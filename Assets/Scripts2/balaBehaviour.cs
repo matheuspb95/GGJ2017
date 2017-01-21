@@ -8,7 +8,7 @@ public class balaBehaviour : MonoBehaviour {
 
 	private Vector3 alvo;
 	private Vector3 personagemVec;
-
+    public float velocity;
 	// Use this for initialization
 	void Start () {
 		alvo = Input.mousePosition;
@@ -18,7 +18,7 @@ public class balaBehaviour : MonoBehaviour {
 		personagemVec = personagem.transform.position;
 		alvo = alvo - personagemVec;
 
-		bala.velocity = alvo*3;
+		bala.velocity = alvo.normalized* velocity;
 	}
 	
 	// Update is called once per frame

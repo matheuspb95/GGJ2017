@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class SpawnObj : MonoBehaviour {
-    public GameObject Prefab;
+    public GameObject Prefab1, Prefab2;
     public float FireRate;
     public bool CanSpawn;
 	// Use this for initialization
@@ -20,7 +20,14 @@ public class SpawnObj : MonoBehaviour {
         while (CanSpawn)
         {
             yield return new WaitForSeconds(FireRate);
-            GameObject newObj = Prefab.Spawn(transform.position);
+            if(Random.value < 0.5f)
+            {
+                GameObject newObj = Prefab1.Spawn(transform.position);
+            }
+            else
+            {
+                GameObject newObj = Prefab2.Spawn(transform.position);
+            }
         }
     }
 }
