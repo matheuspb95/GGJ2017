@@ -19,7 +19,7 @@ public class SpawnObj : MonoBehaviour {
     {
         while (CanSpawn)
         {
-            yield return new WaitForSeconds(1 / FireRate);
+            yield return new WaitForSeconds(FireRate);
             GameObject newObj = Prefab.Spawn(transform.position);
         }
     }

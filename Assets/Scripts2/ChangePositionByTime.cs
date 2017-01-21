@@ -19,7 +19,7 @@ public class ChangePositionByTime : MonoBehaviour {
     {
         while (CanChange)
         {
-            yield return new WaitForSeconds(1 / time);
+            yield return new WaitForSeconds(time);
             float posx = Random.Range(MaxLimit.x, MinLimit.x);
             float posy = Random.Range(MaxLimit.y, MinLimit.y);
 

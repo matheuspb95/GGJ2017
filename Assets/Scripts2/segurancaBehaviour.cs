@@ -8,7 +8,7 @@ public class segurancaBehaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        personagem = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 	
 	// Update is called once per frame
