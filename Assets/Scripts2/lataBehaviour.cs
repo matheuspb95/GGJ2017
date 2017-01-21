@@ -26,7 +26,16 @@ public class lataBehaviour : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, alvo, velocity * Time.deltaTime * distance * 2); 
         else
             transform.position = Vector3.MoveTowards(transform.position, alvo, velocity * Time.deltaTime);
-        if (distance < 0.1f)
-            gameObject.Recycle();
+		if (distance < 0.1f) {
+			Animator anim = GetComponent<Animator> ();
+			if (anim != null) {
+				anim.Stop ();
+			}
+			Invoke ("RecycleNow", 0.5f);
+		}
     }
+
+	void RecycleNow(){
+		gameObject.Recycle();		
+	}
 }
