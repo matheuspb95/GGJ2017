@@ -13,7 +13,7 @@ public class personagemBehaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		velocidade = 4;
+		//velocidade = 4;
 	}
 	
 	// Update is called once per frame
