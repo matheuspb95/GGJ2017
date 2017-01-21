@@ -4,16 +4,29 @@ using System.Collections;
 public class lataBehaviour : MonoBehaviour {
 
 	public Rigidbody2D lata;
-
-	private Vector2 alvo;
-
+    public Transform player;
+    public float velocity;
+    private Vector2 alvo;
+    public float distance;
 	// Use this for initialization
 	void Start () {
-		alvo = new Vector2 (transform.position.x, transform.position.y + 5);
-	}
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
+        Vector2 direction = player.position - transform.position;
+        alvo = player.position + (Vector3)direction.normalized;
+
+        
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = Vector3.MoveTowards(transform.position, alvo,0.03f);
-	}
+        distance = Vector2.Distance(transform.position, alvo);
+
+        if (distance < 0.5f)
+            transform.position = Vector3.MoveTowards(transform.position, alvo, velocity * Time.deltaTime * distance * 2); 
+        else
+            transform.position = Vector3.MoveTowards(transform.position, alvo, velocity * Time.deltaTime);
+        if (distance < 0.1f)
+            Destroy(this.gameObject, 1);
+    }
 }
