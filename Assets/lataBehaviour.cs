@@ -27,6 +27,6 @@ public class lataBehaviour : MonoBehaviour {
         else
             transform.position = Vector3.MoveTowards(transform.position, alvo, velocity * Time.deltaTime);
         if (distance < 0.1f)
-            Destroy(this.gameObject, 1);
+            gameObject.Recycle();
     }
 }

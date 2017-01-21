@@ -20,7 +20,7 @@ public class SpawnObj : MonoBehaviour {
         while (CanSpawn)
         {
             yield return new WaitForSeconds(1 / FireRate);
-            GameObject newObj = Instantiate(Prefab, transform.position, Quaternion.identity)  as GameObject;
+            GameObject newObj = Prefab.Spawn(transform.position);
         }
     }
 }
