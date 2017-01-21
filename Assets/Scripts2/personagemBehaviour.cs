@@ -6,6 +6,8 @@ public class personagemBehaviour : MonoBehaviour {
     public Animator anime;
     public float velocidade;
 
+	public GameObject bala;
+
 	public bool praDireita;
 	public bool praEsquerda;
 	public bool praCima;
@@ -70,6 +72,12 @@ public class personagemBehaviour : MonoBehaviour {
         {
             praDireita = false;
         }
+
+		if(Input.GetButtonDown("Fire1")){
+			bala.SetActive (true);
+			Instantiate (bala, new Vector3(bala.transform.position.x, bala.transform.position.y, -1), Quaternion.identity);
+			bala.SetActive (false);
+		}
 
         anime.SetInteger("estado", estado);
         anime.SetBool("cima", praCima);
