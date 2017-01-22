@@ -44,6 +44,7 @@ public class personagemBehaviour : MonoBehaviour {
 		estaAtirando = false;
 		estaMorto = false;
         anime = GetComponent<Animator>();
+		kills = 0;
 	}
 	
 	// Update is called once per frame
@@ -152,10 +153,10 @@ public class personagemBehaviour : MonoBehaviour {
             praDireita = false;
         }
 
-		pontos.text = "Pontos: " + kills.ToString ();
+		//pontos.text = "Pontos: " + kills.ToString ();
 
 		if(estaMorto == true){
-			mensagem.text = "Voce moreu!";
+			//mensagem.text = "Voce moreu!";
 			if (caiu == false) {
 				anime.SetBool ("morto", true);
 				caiu = true;
