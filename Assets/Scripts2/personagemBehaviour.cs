@@ -4,7 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class personagemBehaviour : MonoBehaviour {
-
+    public AudioSource gaita;
+    public AudioSource sanfona;
     public Animator anime;
     public float velocidade;
 
@@ -74,6 +75,7 @@ public class personagemBehaviour : MonoBehaviour {
 				if(estaAtirando == false){
 					bala.Spawn(new Vector3(transform.position.x, transform.position.y, -1), Quaternion.identity);
 					estaAtirando = true;
+                    gaita.Play();
 				}
 			}
 
@@ -87,11 +89,13 @@ public class personagemBehaviour : MonoBehaviour {
 			}
 
 			if(Input.GetButtonDown("Fire2")){
-				if(estaComCampo == false){
-					inimigos.AddRange(GameObject.FindGameObjectsWithTag ("Enemy"));
+
+                if (estaComCampo == false){
+                    sanfona.Play();
+                    inimigos.AddRange(GameObject.FindGameObjectsWithTag ("Enemy"));
 
 					foreach (GameObject inimigo in inimigos) {
-						float distance = Vector2.Distance (inimigo.transform.position, transform.position);
+                        float distance = Vector2.Distance (inimigo.transform.position, transform.position);
 						if (distance < 1) {
 							Vector2 direction = inimigo.transform.position - transform.position;
 							inimigo.GetComponent<segurancaBehaviour> ().ReceiveDamage (1f);

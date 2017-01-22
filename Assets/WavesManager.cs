@@ -18,7 +18,9 @@ public class WavesManager : MonoBehaviour {
 
     public float NextWaveTime;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
+        Screen.SetResolution(1138, 640, true);
         InvokeRepeating("NextWave", 0, NextWaveTime);
 	}
 	
