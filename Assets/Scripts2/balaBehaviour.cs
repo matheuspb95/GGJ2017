@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class balaBehaviour : MonoBehaviour {
 
 	public Rigidbody2D bala;
@@ -9,9 +10,12 @@ public class balaBehaviour : MonoBehaviour {
 	private Vector3 alvo;
 	private Vector3 personagemVec;
     public float velocity;
+    public Sprite[] notas = new Sprite[4];
 	// Use this for initialization
 	void Awake () {
 		personagem = GameObject.FindGameObjectWithTag("Player");
+        int i = Random.Range(0, 4);
+        GetComponent<SpriteRenderer>().sprite = notas[i];
 	}
 
 	void OnEnable(){

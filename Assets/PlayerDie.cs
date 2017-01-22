@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDie : MonoBehaviour {
 
-	public TextMesh vida;
+	public LifeController vida;
 	public GameObject botao;
 
 	[SerializeField]
@@ -19,9 +19,7 @@ public class PlayerDie : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(life >= 0){
-			vida.text = "Vida: " + life.ToString ();
-		}
+
 	}
 
 	void OnTriggerEnter2D(Collider2D coll){
@@ -37,6 +35,7 @@ public class PlayerDie : MonoBehaviour {
 			if (life <= 0)
 				Die ();
 		}
+        vida.ChangeValue(life);
 	}
 
 	public void Die(){

@@ -28,7 +28,6 @@ public class EnemyDie : MonoBehaviour {
 
 	public void Die(){
 		gameObject.Recycle ();
-		Debug.Log ("Enemy die");
 		personagemBehaviour.kills++;
 	}
 }

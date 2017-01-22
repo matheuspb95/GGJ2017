@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -26,8 +27,8 @@ public class personagemBehaviour : MonoBehaviour {
 	private float contTempCamp;
 	public bool estaComCampo;
 
-	public TextMesh pontos;
-	public TextMesh mensagem;
+	public Text pontos;
+    public Slider Tiro, Sanfona;
 	private bool caiu;
 
 	static public int kills = 0;
@@ -77,11 +78,12 @@ public class personagemBehaviour : MonoBehaviour {
 			}
 
 			if(estaAtirando == true){
-				contTempTiro += Time.deltaTime;
+                contTempTiro += Time.deltaTime;
 				if(contTempTiro >= tempTiro){
 					estaAtirando = false;
 					contTempTiro = 0;
 				}
+                Tiro.value = 1 - (contTempTiro / tempTiro);
 			}
 
 			if(Input.GetButtonDown("Fire2")){
@@ -92,7 +94,7 @@ public class personagemBehaviour : MonoBehaviour {
 						float distance = Vector2.Distance (inimigo.transform.position, transform.position);
 						if (distance < 1) {
 							Vector2 direction = inimigo.transform.position - transform.position;
-							inimigo.GetComponent<segurancaBehaviour> ().ReceiveDamage (2f);
+							inimigo.GetComponent<segurancaBehaviour> ().ReceiveDamage (1f);
 
 							inimigo.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 							inimigo.GetComponent<Rigidbody2D> ().AddForce (direction.normalized * 200);
@@ -109,6 +111,7 @@ public class personagemBehaviour : MonoBehaviour {
 					estaComCampo = false;
 					contTempCamp = 0;
 				}
+                Sanfona.value = 1 - (contTempCamp / tempCamp);
 			}
 		}
 
@@ -152,10 +155,9 @@ public class personagemBehaviour : MonoBehaviour {
             praDireita = false;
         }
 
-		pontos.text = "Pontos: " + kills.ToString ();
+		pontos.text = "Pontos: " + kills.ToString () + "0";
 
 		if(estaMorto == true){
-			mensagem.text = "Voce moreu!";
 			if (caiu == false) {
 				anime.SetBool ("morto", true);
 				caiu = true;
