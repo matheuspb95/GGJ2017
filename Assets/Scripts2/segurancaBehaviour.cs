@@ -8,6 +8,7 @@ public class segurancaBehaviour : MonoBehaviour
     private Vector2 alvo;
 	public bool moving;
 	LifeController life;
+    public float velocity;
     // Use this for initialization
     void Start()
     {
@@ -20,12 +21,13 @@ public class segurancaBehaviour : MonoBehaviour
     void Update()
     {
 		if (moving) {
-			if(Vector2.Distance(personagem.position, transform.position) > 0.5f){
+            float distance = Vector2.Distance(personagem.position, transform.position);
+            if (distance > 0.5f){
 				alvo = personagem.transform.position;
-				transform.position = Vector3.MoveTowards (transform.position, alvo, 0.04f);
-			}if (Vector2.Distance (personagem.position, transform.position) > 0.5f) {
+				transform.position = Vector3.MoveTowards (transform.position, alvo, velocity * Time.deltaTime);
+			}else {
 				alvo = personagem.transform.position;
-				transform.position = Vector3.MoveTowards (transform.position, alvo, 0.02f);
+				transform.position = Vector3.MoveTowards (transform.position, alvo, velocity * Time.deltaTime * distance);
 			}
 		}
     }

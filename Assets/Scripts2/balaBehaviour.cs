@@ -21,7 +21,6 @@ public class balaBehaviour : MonoBehaviour {
 		alvo = new Vector3 (alvo.x, alvo.y, -1);
 		personagemVec = personagem.transform.position;
 		alvo = alvo - personagemVec;
-		Debug.Log ("Start bullet");
 		bala.velocity = alvo.normalized* velocity;
 	}
 	

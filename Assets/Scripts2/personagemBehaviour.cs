@@ -54,7 +54,19 @@ public class personagemBehaviour : MonoBehaviour {
 		float moveVertical = Input.GetAxis ("Vertical");
 
 		if(estaMorto == false){
-			Vector2 movimente = new Vector2 (moveHorizontal, moveVertical);
+            inimigos.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+            int numenemies = 0;
+            foreach (GameObject inimigo in inimigos)
+            {
+                float distance = Vector2.Distance(inimigo.transform.position, transform.position);
+                if (distance < 0.2f)
+                {
+                    numenemies++;
+                }
+            }
+            inimigos.Clear();
+            float vel = velocidade * (1 / (numenemies + 1));
+            Vector2 movimente = new Vector2 (moveHorizontal, moveVertical);
 			transform.Translate(movimente*velocidade*Time.deltaTime);
 
 			if(Input.GetButtonDown("Fire1")){
@@ -80,10 +92,10 @@ public class personagemBehaviour : MonoBehaviour {
 						float distance = Vector2.Distance (inimigo.transform.position, transform.position);
 						if (distance < 1) {
 							Vector2 direction = inimigo.transform.position - transform.position;
-							inimigo.GetComponent<segurancaBehaviour> ().ReceiveDamage (1f);
+							inimigo.GetComponent<segurancaBehaviour> ().ReceiveDamage (2f);
 
 							inimigo.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
-							inimigo.GetComponent<Rigidbody2D> ().AddForce (direction.normalized * 150);
+							inimigo.GetComponent<Rigidbody2D> ().AddForce (direction.normalized * 200);
 						}
 					}
 					inimigos.Clear();
